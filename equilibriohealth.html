@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equilibrio Health</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script>
+    window.onscroll = function () {
+      const header = document.getElementById("header");
+      if (window.scrollY > 60) {
+        header.classList.add("py-2", "shadow-md");
+        header.classList.remove("py-4");
+      } else {
+        header.classList.add("py-4");
+        header.classList.remove("py-2", "shadow-md");
+      }
+    };
+    function toggleMenu() {
+      document.getElementById("nav").classList.toggle("hidden");
+    }
+  </script>
+  </head>
+
+  <body class="font-sans text-gray-800 bg-gray-50">
+    <header
+      id="header"
+      class="fixed top-0 w-full bg-white/90 backdrop-blur z-50 transition-all duration-300 py-4"
+    >
+      <div
+        class="max-w-[1200px] mx-auto px-6 flex justify-between items-center"
+      >
+        <div class="text-2xl font-bold text-green-600">
+          <img src="logo.jpg" width="50px" alt="" />
+        </div>
+        <div
+          class="md:hidden flex flex-col gap-[4px] cursor-pointer"
+          onclick="toggleMenu()"
+        >
+          <span class="h-[3px] w-6 bg-gray-700 rounded"></span>
+          <span class="h-[3px] w-6 bg-gray-700 rounded"></span>
+          <span class="h-[3px] w-6 bg-gray-700 rounded"></span>
+        </div>
+        <nav class="hidden md:flex gap-6 transition-all duration-300">
+          <a href="#sobre" class="hover:text-green-600 transition duration-300"
+            >Sobre</a
+          >
+          <a
+            href="#beneficios"
+            class="hover:text-green-600 transition duration-300"
+            >Benefícios</a
+          >
+          <a
+            href="#contato"
+            class="hover:text-green-600 transition duration-300"
+            >Contato</a
+          >
+        </nav>
+      </div>
+      <nav
+        id="nav"
+        class="md:hidden hidden flex flex-col gap-4 px-6 pt-4 pb-6 bg-white shadow-md"
+      >
+        <a href="#sobre" class="hover:text-green-600 transition duration-300"
+          >Sobre</a
+        >
+        <a
+          href="#beneficios"
+          class="hover:text-green-600 transition duration-300"
+          >Benefícios</a
+        >
+        <a href="#contato" class="hover:text-green-600 transition duration-300"
+          >Contato</a
+        >
+      </nav>
+    </header>
+
+    <main class="pt-[100px]">
+      <section class="w-full">
+        <img
+          src="Saúde emocional para empresa.jpg"
+          alt="Banner Equilibrio Health"
+          class="w-full h-[500px] object-cover"
+        />
+      </section>
+
+      <section id="sobre" class="py-20">
+        <div class="max-w-[1200px] mx-auto px-6 space-y-10">
+          <div>
+            <h2 class="text-3xl font-bold mb-4 text-green-800">Missão:</h2>
+            <p>
+              Promover a saúde mensal nas empresas por meio de soluções
+              acessíveis, humanas e eficazes, construindo ambientes de trabalho
+              mais saudáveis, produtivos e empáticos.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold mb-4 text-green-800">Visão:</h2>
+            <p>
+              Ser referência nacional em serviços de saúde emocional
+              corporativa, reconhecida por transformar a cultura das empresas
+              com equilíbrio, bem-estar e inteligência emocional.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold mb-4 text-green-800">Valores:</h2>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>
+                <strong>Humanização:</strong> Cuidado com pessoas por meio de
+                escuta ativa, acolhimento e empatia.
+              </li>
+              <li>
+                <strong>Inovação com propósito:</strong> Uso da tecnologia e do
+                conhecimento para gerar bem-estar.
+              </li>
+              <li>
+                <strong>Confiança:</strong> Ética, sigilo e respeito às
+                individualidades.
+              </li>
+              <li>
+                <strong>Compromisso Social:</strong> Empresas saudáveis
+                constroem uma sociedade melhor.
+              </li>
+              <li>
+                <strong>Acessibilidade:</strong> Cuidado emocional acessível
+                para empresas de todos os portes.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficios" class="bg-gradient-to-br from-green-100 to-green-50 py-20">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Serviços Prestados:</h2>
+        <div class="swiper beneficios-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Atendimento Psicológico (online ou presencial) 24hs</div>
+            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Coaching e acompanhamento emocional</div>
+            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Palestras e Workshops mensais</div>
+            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Atendimento Emergencial (crise de ansiedade e burnout)</div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-6 mt-8">
+          <div class="swiper-button-prev-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300">←</div>
+          <div class="swiper-button-next-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300">→</div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".beneficios-swiper", {
+              loop: true,
+              spaceBetween: 20,
+              slidesPerView: 1,
+              breakpoints: {
+                768: {
+                  slidesPerView: 3,
+                },
+              },
+              navigation: {
+                nextEl: ".swiper-button-next-beneficios",
+                prevEl: ".swiper-button-prev-beneficios",
+              },
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+      <section class="py-20">
+        <div
+          class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-center"
+        >
+          <img
+            src="fidelidade.png"
+            alt="Imagem"
+            class="rounded-lg w-full md:w-2/3"
+          />
+          <div>
+            <h2 class="text-3xl font-bold mb-4">Diferenciais da Empresa</h2>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>
+                Apoio Online: Plataforma digital para agendamento e gestão de
+                bem-estar.
+              </li>
+              <li>
+                Acompanhamento Personalizado: Atendimento adaptado às
+                necessidades individuais.
+              </li>
+              <li>
+                Relatórios Mensais: Análises sobre o clima organizacional.
+              </li>
+              <li>
+                Avaliação Comportamental: Método DISC para entender perfis de
+                equipe.
+              </li>
+              <li>
+                Gestão de Cashback: Incentivos em saúde, com troca de pontos por
+                benefícios.
+              </li>
+              <li>
+                Cartão de benefícios exclusivos: Créditos mensais para apps,
+                farmácias, academias, etc.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gradient-to-r from-green-100 to-green-200">
+        <div class="max-w-[1200px] mx-auto px-6 overflow-x-auto">
+          <table class="w-full table-auto border border-gray-300 min-w-[600px]">
+            <thead>
+              <tr class="bg-green-300 text-left">
+                <th class="p-3">Modelo</th>
+                <th class="p-3">Como Funciona</th>
+                <th class="p-3">Lucro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="p-3">Assinatura mensal</td>
+                <td class="p-3">
+                  Empresas pagam um valor fixo por colaborador/mês
+                </td>
+                <td class="p-3">Renda recorrente estável</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Venda de planos personalizados</td>
+                <td class="p-3">Empresas escolhem os serviços sob demanda</td>
+                <td class="p-3">Aumenta o ticket médio</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Parceria com psicólogos/terapeutas</td>
+                <td class="p-3">Intermediação com descontos</td>
+                <td class="p-3">Geração de comissão</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Cartão benefício reciclável</td>
+                <td class="p-3">Créditos usados em locais parceiros</td>
+                <td class="p-3">Fidelização e retorno financeiro</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="max-w-[1200px] mx-auto mt-10 px-6">
+          <h2 class="text-3xl font-bold mb-4">Por que contratar a gente?</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>
+              Planos Personalizados: soluções adaptáveis para empresas de todos
+              os tamanhos.
+            </li>
+            <li>
+              Resultados Comprovados: promovem gestão mais eficiente e
+              produtiva.
+            </li>
+            <li>
+              Economia Significativa: redução de até 25% nos afastamentos por
+              saúde mental.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="py-20">
+        <div class="max-w-[1200px] mx-auto px-6 overflow-x-auto">
+          <table class="w-full table-auto border border-gray-300 min-w-[600px]">
+            <thead>
+              <tr class="bg-green-300 text-left">
+                <th class="p-3">Planos</th>
+                <th class="p-3">Ideal para</th>
+                <th class="p-3">Benefícios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="p-3">Essencial</td>
+                <td class="p-3">Pequenas empresas</td>
+                <td class="p-3">Acesso a psicólogos + 1 palestra/mês</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Profissional</td>
+                <td class="p-3">Empresas médias</td>
+                <td class="p-3">Atendimentos + oficinas + cartão equilíbrio</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Premium</td>
+                <td class="p-3">Grandes empresas</td>
+                <td class="p-3">
+                  Tudo incluso + relatórios + DISC + acompanhamento completo
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer id="contato" class="bg-green-700 text-white py-10">
+        <div class="max-w-[1200px] mx-auto px-6 text-center space-y-2">
+          <p>WhatsApp: (35) 1010-0101</p>
+          <p>Email: contatoequilibriohealth@gmail.com</p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
