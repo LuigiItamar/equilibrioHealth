@@ -5,36 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Equilibrio Health</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/alpinejs" defer></script>
-  <script>
-    window.onscroll = function () {
-      const header = document.getElementById("header");
-      if (window.scrollY > 60) {
-        header.classList.add("py-2", "shadow-md");
-        header.classList.remove("py-4");
-      } else {
-        header.classList.add("py-4");
-        header.classList.remove("py-2", "shadow-md");
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
       }
-    };
-    function toggleMenu() {
-      document.getElementById("nav").classList.toggle("hidden");
-    }
-  </script>
+      section[id] {
+        scroll-margin-top: 80px;
+      }
+
+      @media (max-width: 728px) {
+        section[id] {
+          scroll-margin-top: 90px;
+        }
+      }
+    </style>
+    <script>
+      function toggleMenu() {
+        const nav = document.getElementById("nav");
+        nav.classList.toggle("hidden");
+      }
+
+      window.onscroll = function () {
+        const header = document.getElementById("header");
+        const nav = document.getElementById("nav");
+
+        if (window.scrollY > 60) {
+          header.classList.add("py-2", "shadow-md");
+          header.classList.remove("py-4");
+
+          nav.style.top = "77.5px";
+        } else {
+          header.classList.add("py-4");
+          header.classList.remove("py-2", "shadow-md");
+
+          nav.style.top = header.offsetHeight + "px";
+        }
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const header = document.getElementById("header");
+        const nav = document.getElementById("nav");
+
+        // Define top do nav mobile na inicialização conforme altura do header
+        nav.style.top = header.offsetHeight + "px";
+
+        // Fecha o menu ao clicar em qualquer link dentro dele
+        document.querySelectorAll("#nav a").forEach((link) => {
+          link.addEventListener("click", () => {
+            nav.classList.add("hidden");
+          });
+        });
+      });
+    </script>
   </head>
 
   <body class="font-sans text-gray-800 bg-gray-50">
     <header
       id="header"
-      class="fixed top-0 w-full bg-white/90 backdrop-blur z-50 transition-all duration-300 py-4"
+      class="fixed top-0 w-full bg-white/80 backdrop-blur z-50 transition-all duration-300 py-4"
     >
       <div
         class="max-w-[1200px] mx-auto px-6 flex justify-between items-center"
       >
         <div class="text-2xl font-bold text-green-600">
-          <img src="logo.jpg" width="50px" alt="" />
+          <img src="logo.png" width="20%" alt="" />
         </div>
         <div
           class="md:hidden flex flex-col gap-[4px] cursor-pointer"
@@ -53,16 +93,17 @@
             class="hover:text-green-600 transition duration-300"
             >Benefícios</a
           >
-          <a
-            href="#contato"
-            class="hover:text-green-600 transition duration-300"
-            >Contato</a
+          <a href="#planos" class="hover:text-green-600 transition duration-300"
+            >Planos</a
           >
         </nav>
       </div>
+
+      <!-- NAV MOBILE FIXO, ABAIXO DO HEADER -->
       <nav
         id="nav"
-        class="md:hidden hidden flex flex-col gap-4 px-6 pt-4 pb-6 bg-white shadow-md"
+        class="md:hidden fixed left-0 right-0 hidden flex flex-col gap-4 px-6 pt-4 pb-6 bg-white/80 backdrop-blur shadow-md z-40 transition-all duration-300"
+        style="top: 64px"
       >
         <a href="#sobre" class="hover:text-green-600 transition duration-300"
           >Sobre</a
@@ -72,8 +113,8 @@
           class="hover:text-green-600 transition duration-300"
           >Benefícios</a
         >
-        <a href="#contato" class="hover:text-green-600 transition duration-300"
-          >Contato</a
+        <a href="#planos" class="hover:text-green-600 transition duration-300"
+          >Planos</a
         >
       </nav>
     </header>
@@ -81,18 +122,26 @@
     <main class="pt-[100px]">
       <section class="w-full">
         <img
-          src="Saúde emocional para empresa.jpg"
+          src="banner-desktop.jpg"
           alt="Banner Equilibrio Health"
-          class="w-full h-[500px] object-cover"
+          class="w-full h-auto object-cover hidden md:block"
+        />
+        <img
+          src="banner-mobile.jpg"
+          alt="Banner Equilibrio Health"
+          class="w-full h-auto object-cover md:hidden"
         />
       </section>
 
-      <section id="sobre" class="py-20">
+      <section
+        id="sobre"
+        class="py-10 md:py-20 bg-[linear-gradient(35deg,_#ffffff_10%,_#7bc89d_100%)]"
+      >
         <div class="max-w-[1200px] mx-auto px-6 space-y-10">
           <div>
             <h2 class="text-3xl font-bold mb-4 text-green-800">Missão:</h2>
             <p>
-              Promover a saúde mensal nas empresas por meio de soluções
+              Promover a saúde mental nas empresas por meio de soluções
               acessíveis, humanas e eficazes, construindo ambientes de trabalho
               mais saudáveis, produtivos e empáticos.
             </p>
@@ -133,85 +182,175 @@
         </div>
       </section>
 
-      <section id="beneficios" class="bg-gradient-to-br from-green-100 to-green-50 py-20">
-      <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-10">Serviços Prestados:</h2>
-        <div class="swiper beneficios-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Atendimento Psicológico (online ou presencial) 24hs</div>
-            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Coaching e acompanhamento emocional</div>
-            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Palestras e Workshops mensais</div>
-            <div class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full flex items-center justify-center text-center text-sm md:text-base">Atendimento Emergencial (crise de ansiedade e burnout)</div>
-          </div>
-        </div>
-        <div class="flex justify-center gap-6 mt-8">
-          <div class="swiper-button-prev-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300">←</div>
-          <div class="swiper-button-next-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300">→</div>
-        </div>
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            new Swiper(".beneficios-swiper", {
-              loop: true,
-              spaceBetween: 20,
-              slidesPerView: 1,
-              breakpoints: {
-                768: {
-                  slidesPerView: 3,
-                },
-              },
-              navigation: {
-                nextEl: ".swiper-button-next-beneficios",
-                prevEl: ".swiper-button-prev-beneficios",
-              },
-            });
-          });
-        </script>
-      </div>
-    </section>
+      <section
+        id="beneficios"
+        class="bg-[linear-gradient(35deg,_rgb(33_37_41)_0%,_rgb(45_206_137)_100%)] py-10 md:py-20"
+      >
+        <div class="max-w-[1200px] mx-auto px-6">
+          <h2 class="text-3xl text-white font-bold text-center mb-10">
+            Serviços Prestados:
+          </h2>
 
-      <section class="py-20">
+          <div class="relative pb-16">
+            <div class="swiper beneficios-swiper">
+              <div class="swiper-wrapper">
+                <div
+                  class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full min-h-[160px] flex items-center justify-center text-center text-sm md:text-base"
+                >
+                  Atendimento Emergencial (crise de ansiedade, depressão e
+                  burnout)
+                </div>
+                <div
+                  class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full min-h-[160px] flex items-center justify-center text-center text-sm md:text-base"
+                >
+                  Atendimento Psicológico (online ou presencial) 24hs
+                </div>
+                <div
+                  class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full min-h-[160px] flex items-center justify-center text-center text-sm md:text-base"
+                >
+                  Coaching e acompanhamento emocional
+                </div>
+                <div
+                  class="swiper-slide bg-white p-6 rounded-lg shadow-md h-full min-h-[160px] flex items-center justify-center text-center text-sm md:text-base"
+                >
+                  Palestras e Workshops mensais
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="absolute bottom-0 left-0 right-0 flex justify-between px-4"
+            >
+              <div
+                class="swiper-button-prev-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300 shadow-md"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </div>
+              <div
+                class="swiper-button-next-beneficios w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300 shadow-md"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              new Swiper(".beneficios-swiper", {
+                loop: true,
+                spaceBetween: 20,
+                slidesPerView: 1,
+                breakpoints: {
+                  768: {
+                    slidesPerView: 3,
+                  },
+                },
+                navigation: {
+                  nextEl: ".swiper-button-next-beneficios",
+                  prevEl: ".swiper-button-prev-beneficios",
+                },
+              });
+            });
+          </script>
+        </div>
+      </section>
+
+      <section
+        class="py-10 md:py-20 bg-[linear-gradient(35deg,_#ffffff_10%,_#7bc89d_100%)]"
+      >
         <div
-          class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-center"
+          class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-start"
         >
           <img
             src="fidelidade.png"
             alt="Imagem"
-            class="rounded-lg w-full md:w-2/3"
+            class="rounded-lg w-full md:w-2/3 order-2 md:order-1"
           />
-          <div>
+          <div class="mt-4 order-1 md:order-2">
             <h2 class="text-3xl font-bold mb-4">Diferenciais da Empresa</h2>
             <ul class="list-disc pl-6 space-y-2">
               <li>
-                Apoio Online: Plataforma digital para agendamento e gestão de
-                bem-estar.
+                <strong>Apoio Online:</strong> Plataforma digital para
+                agendamento e gestão de bem-estar.
               </li>
               <li>
-                Acompanhamento Personalizado: Atendimento adaptado às
-                necessidades individuais.
+                <strong>Acompanhamento Personalizado:</strong> Atendimento
+                adaptado às necessidades individuais.
               </li>
               <li>
-                Relatórios Mensais: Análises sobre o clima organizacional.
+                <strong>Relatórios Mensais:</strong> Análises sobre o clima
+                organizacional.
               </li>
               <li>
-                Avaliação Comportamental: Método DISC para entender perfis de
-                equipe.
+                <strong>Avaliação Comportamental:</strong> Método DISC para
+                entender perfis de equipe.
               </li>
               <li>
-                Gestão de Cashback: Incentivos em saúde, com troca de pontos por
-                benefícios.
+                <strong>Gestão de Cashback:</strong> Incentivos em saúde, com
+                troca de pontos por benefícios.
               </li>
               <li>
-                Cartão de benefícios exclusivos: Créditos mensais para apps,
-                farmácias, academias, etc.
+                <strong>Cartão de benefícios exclusivos:</strong> Créditos
+                mensais para apps, farmácias, academias, etc.
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section class="py-20 bg-gradient-to-r from-green-100 to-green-200">
+      <section
+        class="py-10 md:py-20 bg-[linear-gradient(35deg,_rgb(33_37_41)_0%,_rgb(45_206_137)_100%)]"
+      >
+        <div class="max-w-[1200px] mx-auto mb-10 px-6">
+          <h2 class="text-3xl font-bold text-white mb-4">
+            Por que contratar a gente?
+          </h2>
+          <ul class="list-disc pl-6 text-[#fffafa] space-y-2">
+            <li>
+              <strong>Planos Personalizados:</strong> soluções adaptáveis para
+              empresas de todos os tamanhos.
+            </li>
+            <li>
+              <strong>Resultados Comprovados:</strong> promovem gestão mais
+              eficiente e produtiva.
+            </li>
+            <li>
+              <strong>Economia Significativa:</strong> redução de até 25% nos
+              afastamentos por saúde mental.
+            </li>
+          </ul>
+        </div>
+
         <div class="max-w-[1200px] mx-auto px-6 overflow-x-auto">
-          <table class="w-full table-auto border border-gray-300 min-w-[600px]">
+          <table
+            class="w-full rounded-lg overflow-hidden table-auto border border-gray-300 min-w-[600px]"
+          >
             <thead>
               <tr class="bg-green-300 text-left">
                 <th class="p-3">Modelo</th>
@@ -219,7 +358,7 @@
                 <th class="p-3">Lucro</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-white">
               <tr class="border-t">
                 <td class="p-3">Assinatura mensal</td>
                 <td class="p-3">
@@ -245,28 +384,19 @@
             </tbody>
           </table>
         </div>
-        <div class="max-w-[1200px] mx-auto mt-10 px-6">
-          <h2 class="text-3xl font-bold mb-4">Por que contratar a gente?</h2>
-          <ul class="list-disc pl-6 space-y-2">
-            <li>
-              Planos Personalizados: soluções adaptáveis para empresas de todos
-              os tamanhos.
-            </li>
-            <li>
-              Resultados Comprovados: promovem gestão mais eficiente e
-              produtiva.
-            </li>
-            <li>
-              Economia Significativa: redução de até 25% nos afastamentos por
-              saúde mental.
-            </li>
-          </ul>
-        </div>
       </section>
 
-      <section class="py-20">
+      <section
+        id="planos"
+        class="py-10 md:py-20 bg-[linear-gradient(35deg,_#ffffff_10%,_#7bc89d_100%)]"
+      >
         <div class="max-w-[1200px] mx-auto px-6 overflow-x-auto">
-          <table class="w-full table-auto border border-gray-300 min-w-[600px]">
+          <h2 class="text-3xl font-bold mb-12">
+            Planos sob medida para sua empresa
+          </h2>
+          <table
+            class="w-full table-auto border border-gray-300 min-w-[600px] rounded-lg overflow-hidden"
+          >
             <thead>
               <tr class="bg-green-300 text-left">
                 <th class="p-3">Planos</th>
@@ -274,7 +404,7 @@
                 <th class="p-3">Benefícios</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-white">
               <tr class="border-t">
                 <td class="p-3">Essencial</td>
                 <td class="p-3">Pequenas empresas</td>
@@ -297,7 +427,9 @@
         </div>
       </section>
 
-      <footer id="contato" class="bg-green-700 text-white py-10">
+      <footer
+        class="bg-[linear-gradient(35deg,_rgb(33_37_41)_0%,_rgb(45_206_137)_100%)] text-white py-10"
+      >
         <div class="max-w-[1200px] mx-auto px-6 text-center space-y-2">
           <p>WhatsApp: (35) 1010-0101</p>
           <p>Email: contatoequilibriohealth@gmail.com</p>
